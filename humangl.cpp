@@ -59,6 +59,10 @@ void HumanGL::drawGL()
 
 void HumanGL::drawHuman()
 {
+    glRotatef(m_wholeAngle.xAngle, 1.0, 0.0, 0.0);
+    glRotatef(m_wholeAngle.yAngle, 0.0, 1.0, 0.0);
+    glRotatef(m_wholeAngle.zAngle, 0.0, 0.0, 1.0);
+
     drawHead();
     drawWaist();
 
@@ -67,12 +71,22 @@ void HumanGL::drawHuman()
 
     drawLeftLeg();
     drawRightLeg();
+//    test();
+}
+
+void HumanGL::test()
+{
+    glPushMatrix();
+    setupColor(255, 69, 0);
+    model.rightLeg->draw();
+    glPopMatrix();
 }
 
 void HumanGL::drawHead()
 {
     glPushMatrix();
     setupColor(255, 69, 0);
+
     model.head->draw();
     model.neck1->draw();
     model.neck2->draw();
@@ -93,6 +107,7 @@ void HumanGL::drawWaist()
 {
     glPushMatrix();
     setupColor(255, 69, 0);
+
     model.waist1->draw();
     model.waist2->draw();
     model.waist3->draw();
@@ -104,15 +119,20 @@ void HumanGL::drawWaist()
 void HumanGL::drawLeftArm()
 {
     glPushMatrix();
+    //左大臂
     setupColor(255, 69, 0);
     glTranslatef(150, 0, 1340);
-    qDebug() << "drawLeftArm" << m_leftArmAngle.xAngle << m_leftArmAngle.yAngle << m_leftArmAngle.zAngle;
-    glRotatef(m_leftArmAngle.xAngle, 1.0, 0.0, 0.0);
-    glRotatef(m_leftArmAngle.yAngle, 0.0, 1.0, 0.0);
-    glRotatef(m_leftArmAngle.zAngle, 0.0, 0.0, 1.0);
+    glRotatef(m_leftArm1Angle.xAngle, 1.0, 0.0, 0.0);
+    glRotatef(m_leftArm1Angle.yAngle, 0.0, 1.0, 0.0);
+    glRotatef(m_leftArm1Angle.zAngle, 0.0, 0.0, 1.0);
     drawSTLCoordinates(0, 255, 0);
     model.leftArm1->draw();
     glTranslatef(200, 0, -15);
+    //左小臂
+    glRotatef(m_leftArm2Angle.xAngle, 1.0, 0.0, 0.0);
+    glRotatef(m_leftArm2Angle.yAngle, 0.0, 1.0, 0.0);
+    glRotatef(m_leftArm2Angle.zAngle, 0.0, 0.0, 1.0);
+    drawSTLCoordinates(0, 255, 0);
     model.leftArm2->draw();
     glTranslatef(230, 0, -30);
     model.leftHand->draw();
@@ -122,14 +142,21 @@ void HumanGL::drawLeftArm()
 void HumanGL::drawRightArm()
 {
     glPushMatrix();
+    //右大臂
     setupColor(255, 69, 0);
     glTranslatef(-145, 0, 1340);
-    glRotatef(m_rightArmAngle.xAngle, 1.0, 0.0, 0.0);
-    glRotatef(m_rightArmAngle.yAngle, 0.0, 1.0, 0.0);
-    glRotatef(m_rightArmAngle.zAngle, 0.0, 0.0, 1.0);
+    glRotatef(m_rightArm1Angle.xAngle, 1.0, 0.0, 0.0);
+    glRotatef(m_rightArm1Angle.yAngle, 0.0, 1.0, 0.0);
+    glRotatef(m_rightArm1Angle.zAngle, 0.0, 0.0, 1.0);
     drawSTLCoordinates(0, 255, 0);
     model.rightArm1->draw();
     glTranslatef(-190, 10, -40);
+
+    //右小臂
+    glRotatef(m_rightArm2Angle.xAngle, 1.0, 0.0, 0.0);
+    glRotatef(m_rightArm2Angle.yAngle, 0.0, 1.0, 0.0);
+    glRotatef(m_rightArm2Angle.zAngle, 0.0, 0.0, 1.0);
+    drawSTLCoordinates(0, 255, 0);
     model.rightArm2->draw();
     glTranslatef(-230, 0, -30);
     model.rightHand->draw();
@@ -139,14 +166,20 @@ void HumanGL::drawRightArm()
 void HumanGL::drawLeftLeg()
 {
     glPushMatrix();
+    //左大腿
     setupColor(255, 69, 0);
     glTranslatef(110, 0, 870);
+    glRotatef(m_leftThighAngle.xAngle, 1.0, 0.0, 0.0);
+    glRotatef(m_leftThighAngle.yAngle, 0.0, 1.0, 0.0);
+    glRotatef(m_leftThighAngle.zAngle, 0.0, 0.0, 1.0);
+    drawSTLCoordinates(255, 255, 0);
+    model.leftThigh->draw();
+    //左小腿
+    glTranslatef(0, -25, -370);
     glRotatef(m_leftLegAngle.xAngle, 1.0, 0.0, 0.0);
     glRotatef(m_leftLegAngle.yAngle, 0.0, 1.0, 0.0);
     glRotatef(m_leftLegAngle.zAngle, 0.0, 0.0, 1.0);
     drawSTLCoordinates(255, 255, 0);
-    model.leftThigh->draw();
-    glTranslatef(0, -25, -370);
     model.leftLeg->draw();
     glTranslatef(-110, 37, -500);
     model.leftFoot1->draw();
@@ -157,15 +190,23 @@ void HumanGL::drawLeftLeg()
 void HumanGL::drawRightLeg()
 {
     glPushMatrix();
+    //右大腿
     setupColor(255, 69, 0);
     glTranslatef(-100, 30, 870);
+    glRotatef(m_rightThighAngle.xAngle, 1.0, 0.0, 0.0);
+    glRotatef(m_rightThighAngle.yAngle, 0.0, 1.0, 0.0);
+    glRotatef(m_rightThighAngle.zAngle, 0.0, 0.0, 1.0);
+    drawSTLCoordinates(0, 255, 255);
+    model.rightThigh->draw();
+    glTranslatef(20, -70, -370);
+
+    //右小腿
     glRotatef(m_rightLegAngle.xAngle, 1.0, 0.0, 0.0);
     glRotatef(m_rightLegAngle.yAngle, 0.0, 1.0, 0.0);
     glRotatef(m_rightLegAngle.zAngle, 0.0, 0.0, 1.0);
     drawSTLCoordinates(0, 255, 255);
-    model.rightThigh->draw();
-    glTranslatef(20, -70, -370);
     model.rightLeg->draw();
+
     glTranslatef(60, 40, -495);
     model.rightFoot1->draw();
     model.rightFoot2->draw();

@@ -61,6 +61,7 @@ public:
     HumanGL(QWidget *parent = 0);
     void drawGL() override;
     void drawHuman();
+    void test();
     /**
      * @brief drawHead 头部、胸部、肩
      */
@@ -86,17 +87,38 @@ public:
      */
     void drawRightLeg();
 
-    inline void setLeftArmAngle(int xA ,int yA, int zA){
-        m_leftArmAngle.xAngle = xA;
-        m_leftArmAngle.yAngle = yA;
-        m_leftArmAngle.zAngle = zA;
+    inline void setLeftArm1Angle(int xA ,int yA, int zA){
+        m_leftArm1Angle.xAngle = xA;
+        m_leftArm1Angle.yAngle = yA;
+        m_leftArm1Angle.zAngle = zA;
         updateGL();
     }
 
-    inline void setRightArmAngle(int xA ,int yA, int zA){
-        m_rightArmAngle.xAngle = xA;
-        m_rightArmAngle.yAngle = yA;
-        m_rightArmAngle.zAngle = zA;
+    inline void setLeftArm2Angle(int xA ,int yA, int zA){
+        m_leftArm2Angle.xAngle = xA;
+        m_leftArm2Angle.yAngle = yA;
+        m_leftArm2Angle.zAngle = zA;
+        updateGL();
+    }
+
+    inline void setRightArm1Angle(int xA ,int yA, int zA){
+        m_rightArm1Angle.xAngle = xA;
+        m_rightArm1Angle.yAngle = yA;
+        m_rightArm1Angle.zAngle = zA;
+        updateGL();
+    }
+
+    inline void setRightArm2Angle(int xA ,int yA, int zA){
+        m_rightArm2Angle.xAngle = xA;
+        m_rightArm2Angle.yAngle = yA;
+        m_rightArm2Angle.zAngle = zA;
+        updateGL();
+    }
+
+    inline void setLeftThighAngle(int xA ,int yA, int zA){
+        m_leftThighAngle.xAngle = xA;
+        m_leftThighAngle.yAngle = yA;
+        m_leftThighAngle.zAngle = zA;
         updateGL();
     }
 
@@ -107,10 +129,24 @@ public:
         updateGL();
     }
 
+    inline void setRightThighAngle(int xA ,int yA, int zA){
+        m_rightThighAngle.xAngle = xA;
+        m_rightThighAngle.yAngle = yA;
+        m_rightThighAngle.zAngle = zA;
+        updateGL();
+    }
+
     inline void setRightLegAngle(int xA ,int yA, int zA){
         m_rightLegAngle.xAngle = xA;
         m_rightLegAngle.yAngle = yA;
         m_rightLegAngle.zAngle = zA;
+        updateGL();
+    }
+
+    inline void setWholeAngle(int xA ,int yA, int zA){
+        m_wholeAngle.xAngle = xA;
+        m_wholeAngle.yAngle = yA;
+        m_wholeAngle.zAngle = zA;
         updateGL();
     }
 
@@ -119,9 +155,18 @@ protected:
 
 private:
   HumanStl model;
-  RotateAngle m_leftArmAngle;
-  RotateAngle m_rightArmAngle;
+  RotateAngle m_wholeAngle;     /* 整体 */
+
+  RotateAngle m_leftArm1Angle;
+  RotateAngle m_leftArm2Angle;
+
+  RotateAngle m_rightArm1Angle;
+  RotateAngle m_rightArm2Angle;
+
+  RotateAngle m_leftThighAngle;
   RotateAngle m_leftLegAngle;
+
+  RotateAngle m_rightThighAngle;
   RotateAngle m_rightLegAngle;
 };
 
